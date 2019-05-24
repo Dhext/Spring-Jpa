@@ -5,8 +5,12 @@ import com.bolsadeideas.springboot.datajpa.app.springbootdatajpa.models.entity.C
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.naming.Binding;
+import javax.validation.Valid;
 
 @Controller
 public class ClienteController {
@@ -28,7 +32,11 @@ public class ClienteController {
         return "form";
     }
     @PostMapping("/form")
-    public String guardar(Cliente cliente){
+    public String guardar(@Valid Cliente cliente, BindingResult result,Model model){
+        if(result.hasErrors()){
+            model.addAttribute("titulo","Fomulario de Cliente");
+            return "form";
+        }
         clienteDao.save(cliente);
         return "redirect:listar";
     }
