@@ -56,13 +56,13 @@
                      <small class="form-text text-danger" th:if="${#fields.hasErrors('createAt')}" th:errors="*{createAt}"></small>
                  </div>
             </div>
+                <input  type="hidden" th:field="*{id}"/>
             <div class="form-group">
                 <div class="col-sm-6">
                     <input type="submit" value="Crear Cliente" class="btn btn-primary"/>
                 </div>
             </div>
-            <input type="hidden" th:field="*{id}"/>
-            </form>
+           </form>
         </div>
 
         </body>
